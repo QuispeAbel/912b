@@ -2,27 +2,39 @@ package com.example.a912b.ui.home
 
 import android.Manifest
 import android.content.Context
+import android.content.Context.VIBRATOR_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
+import android.media.MediaPlayer
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.VibrationEffect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.a912b.R
 import com.example.a912b.databinding.FragmentHomeBinding
+import android.os.Vibrator
+import androidx.annotation.RequiresApi
 
 class HomeFragment : Fragment() {
+
+    /*
+
+                  VARIABLES
+
+     */
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -30,11 +42,37 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var boton_llamado: Button
 
+
+    //variables para el boton de alarma
+
+
+    private lateinit var btn_alert: Button
+
+    private lateinit var mediaPlayer: MediaPlayer
+
+    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var toggleRunnable: Runnable
+    private var isToggling = false
+
+    private lateinit var vibrator:Vibrator
+    private lateinit var vibrationRunnable: Runnable
+    private var isVibrating = false
+
+
     //variables para linterna
+
+
     private lateinit var cameraManager: CameraManager
     private var cameraId: String? = null
     private var isTorchOn = false
     private lateinit var boton_linterna: Button
+
+
+    /*
+
+                   METODOS
+
+     */
 
     //funcion para encender y apagar la linterna
     private fun toggleFlashlight() {
@@ -62,8 +100,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
-
     // Método para realizar la llamada
     private fun makePhoneCall() {
         val phoneNumber = "tel:113"
@@ -80,6 +116,57 @@ class HomeFragment : Fragment() {
     companion object {
         private const val REQUEST_CALL_PERMISSION = 1
     }
+
+
+    // Funciones del boton de alarma
+
+
+    // Funcion para el sonido de la alarma
+    private fun alarmSound(){
+        if(mediaPlayer.isPlaying == false && mediaPlayer.isLooping == false){  // si mediaPlayer esta apagado y no esta loopeando lo enciende
+            mediaPlayer.isLooping = true
+            mediaPlayer.start()
+        }else{ // en caso contratio lo pausa
+            mediaPlayer.pause()
+            mediaPlayer.isLooping = false
+        }
+    }
+
+    // Funciones para loopear el flash
+
+    private fun flashToggling(){
+        if (isToggling) {  // si la linterna esta prendida la apaga
+            handler.removeCallbacks(toggleRunnable)
+            isToggling = false
+            toggleFlashlight()
+        } else { // si la linterna esta apagada la enciende llamando al hilo y setea isToggling en true
+            handler.post(toggleRunnable)
+            isToggling = true
+        }
+    }
+
+    // Funcion para vibrar
+
+    private fun vibratorLoop(){
+        if (isVibrating) {  // si la vibracion ya esta encendida la apaga y setea isVibrating en false
+            handler.removeCallbacks(vibrationRunnable)
+            vibrator.cancel()
+            isVibrating = false
+        } else {  // si la vibracion esta apagada la enciende
+            isVibrating = true
+            handler.post(vibrationRunnable)
+        }
+    }
+
+
+
+
+    /*
+
+               METODOS PRINCIPALES
+
+     */
+
 
     // Infla la vista del fragmento
     override fun onCreateView(
@@ -111,11 +198,51 @@ class HomeFragment : Fragment() {
             toggleFlashlight()
         }
         checkPermissions()
+
+
+        // Configuracion del boton de alarma
+
+
+        mediaPlayer = MediaPlayer.create(context, R.raw.alarm_sound) // crea el mediaPlayer
+        mediaPlayer.setVolume(0.05F, 0.05F) // setea el volumen
+
+        toggleRunnable = object : Runnable {   //crea el hilo para el flash
+            override fun run() {
+                toggleFlashlight()
+                handler.postDelayed(this, 1000)
+            }
+        }
+
+        vibrator = requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator // crea la variable vibrator con los servicios de vibracion
+                                                                                    // solo esta deprecated a partir de la api 31
+
+        vibrationRunnable = object : Runnable {  // crea el hilo para poder generar la vibracion
+            @RequiresApi(Build.VERSION_CODES.O)
+            override fun run() {
+                if (isVibrating) {   //se asegura que la vibracion esta en true
+                    vibrator.vibrate(
+                        VibrationEffect.createOneShot(   //crea el efecto de vibracion con una duracion de 1 seg y una amplitud por defecto
+                            1000,
+                            VibrationEffect.DEFAULT_AMPLITUDE
+                        )
+                    )
+                    handler.postDelayed(this, 3000)  // espera 3 segundos antes de volver a ejecutar el hilo
+                }
+            }
+        }
+
+        btn_alert = binding.btnAlerta  // crea el boton de alerta
+        btn_alert.setOnClickListener{  // setea el listener del boton con sus respectivas funcionalidades
+            alarmSound()
+            flashToggling()
+            vibratorLoop()
+        }
     }
 
     // Limpia el binding cuando se destruye la vista
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        mediaPlayer.stop()
     }
 }

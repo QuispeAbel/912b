@@ -8,8 +8,12 @@
     <!--Permiso para llamada pa-->
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <!--Permiso para linternita pa-->
+    <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <!--Permiso para alarma-->
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
