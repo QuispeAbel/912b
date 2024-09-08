@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_emergencia"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:text="@string/Emergencia_btn"
+        android:textSize="48sp"
+        app:icon="@drawable/llamada911_50"
+        app:iconGravity="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.354" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_alerta"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:text="@string/alerta_btn"
+        app:icon="@drawable/ic_btn_alerta_50"
+        app:iconGravity="textTop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.273"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.682" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_linterna"
+        android:layout_width="100dp"
+        android:layout_height="110dp"
+        android:text="@string/linterna_btn"
+        android:textColor="@color/red_claro"
+        app:backgroundTint="@color/white"
+        app:icon="@drawable/ic_linterna"
+        app:iconTint="@color/red_claro"
+        app:iconGravity="textTop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.723"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.682"
+        app:strokeColor="@color/red_claro"
+        app:strokeWidth="2dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

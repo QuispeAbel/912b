@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">912b</string>
+    <string name="title_home">Emergencia</string>
+    <string name="title_dashboard">Ubicacion</string>
+    <string name="title_notifications">Policia</string>
+    <string name="Emergencia_btn">911</string>
+    <string name="alerta_btn">Alerta</string>
+    <string name="linterna_btn">Flash</string>
+    <string name="title_audio">Audio</string>
+</resources>
