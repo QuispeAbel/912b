@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.recordaudio.RecordAudio">
 
-    <TextView
-        android:id="@+id/textAudio"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+    <Button
+        android:id="@+id/btn_startRecord"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:text="@string/startRecord_btn"
+        android:textColor="@color/red_claro"
+        app:backgroundTint="@color/white"
+        app:icon="@drawable/ic_mic_none_50"
+        app:iconGravity="textTop"
+        app:iconTint="@color/red_claro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.303"
+        app:strokeColor="@color/red_claro"
+        app:strokeWidth="2dp" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/btn_stopRecord"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:text="@string/stopRecord_btn"
+        android:textColor="@color/red_claro"
+        app:backgroundTint="@color/white"
+        app:icon="@drawable/ic_pause_circle_24"
+        app:iconGravity="textStart"
+        app:iconTint="@color/red_claro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.599"
+        app:strokeColor="@color/red_claro"
+        app:strokeWidth="2dp" />
+
+    <Button
+        android:id="@+id/btn_playRecord"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="58dp"
+        android:text="@string/playRecord_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.445"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.722"
+        app:icon="@drawable/ic_play_circle_24"
+        app:iconGravity="textStart"
+        app:iconTint="@color/white"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
