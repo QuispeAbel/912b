@@ -5,11 +5,7 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
-    <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.a912b.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -24,8 +20,20 @@
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.a912b.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
         android:id="@+id/navigation_recordaudio"
         android:name="com.example.a912b.ui.recordaudio.RecordAudio"
         android:label="@string/title_audio"
         tools:layout="@layout/fragment_record_audio" />
+
+    <fragment
+        android:id="@+id/navigation_recordvideo"
+        android:name="com.example.a912b.ui.recordvideo.RecordVideoFragment"
+        android:label="@string/title_video"
+        tools:layout="@layout/fragment_record_video" />
 </navigation>
