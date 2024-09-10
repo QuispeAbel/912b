@@ -1,4 +1,4 @@
-package com.example.a912b.ui.dashboard
+package com.example.a912b.ui.ubicacion
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
