@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+
 
     <item
         android:id="@+id/navigation_dashboard"
@@ -17,8 +14,17 @@
         android:title="@string/title_notifications" />
 
     <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
         android:id="@+id/navigation_recordaudio"
         android:icon="@drawable/ic_audio"
         android:title="@string/title_audio" />
+    <item
+        android:id="@+id/navigation_recordvideo"
+        android:icon="@drawable/ic_videocam"
+        android:title="@string/title_video" />
 
 </menu>
