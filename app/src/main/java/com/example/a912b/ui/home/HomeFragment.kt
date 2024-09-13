@@ -244,5 +244,10 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
         mediaPlayer.stop()
+        handler.removeCallbacks(toggleRunnable)
+        isToggling = false
+        handler.removeCallbacks(vibrationRunnable)
+        vibrator.cancel()
+        isVibrating = false
     }
 }
