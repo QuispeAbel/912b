@@ -1,4 +1,4 @@
-package com.example.a912b
+package com.example.a912b.ui.recordvideo.botones
 
 import androidx.lifecycle.ViewModel
 

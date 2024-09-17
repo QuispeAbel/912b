@@ -9,7 +9,7 @@
     <string name="title_audio">Audio</string>
     <string name="title_video">Video</string>
     <string name="startRecord_btn">Grabar</string>
-    <string name="stopRecord_btn">Pausar</string>
+    <string name="stopRecord_btn">Detener</string>
     <string name="playRecord_btn">Reproducir</string>
     <string name="frontalCam_btn">Frontal</string>
     <string name="traseraCam_btn">Trasera</string>
