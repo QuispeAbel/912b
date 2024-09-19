@@ -1,14 +1,13 @@
 {
   "project_info": {
-    "project_number": "678665194078",
-    "firebase_url": "https://b-7e112-default-rtdb.firebaseio.com",
-    "project_id": "b-7e112",
-    "storage_bucket": "b-7e112.appspot.com"
+    "project_number": "490450142550",
+    "project_id": "app912-b6efb",
+    "storage_bucket": "app912-b6efb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:678665194078:android:72032032878b9126d2c2cf",
+        "mobilesdk_app_id": "1:490450142550:android:15ae3dfbcb6b9ec1a6c2f7",
         "android_client_info": {
           "package_name": "com.example.a912b"
         }
@@ -16,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCoZvhWpcOpapZOzxSpa3cftGSWUfDJnWk"
+          "current_key": "AIzaSyBI0GVVGieesxoBaLWb5LfqwPOBU4FYgeQ"
         }
       ],
       "services": {
