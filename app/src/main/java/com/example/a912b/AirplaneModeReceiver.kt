@@ -19,7 +19,10 @@ class AirplaneModeReceiver : BroadcastReceiver() {
     private fun showAirplaneModeDialog(context: Context) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Modo avión activado")
-        builder.setMessage("El modo avión está activado. Algunas funciones no estarán disponibles.")
+        builder.setMessage("El modo avión está activado. Algunas funciones no estarán disponibles:\n" +
+                "- Llamadas\n" +
+                "- La ubicación no será correcta\n" +
+                "- Los mensajes se enviarán cuando se vuelva a conectar")
         builder.setPositiveButton("Aceptar") { dialog, _ ->
             dialog.dismiss()
         }
