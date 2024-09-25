@@ -8,22 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a912b.R
 import com.example.a912b.adaptermensajes
 import com.example.a912b.databinding.FragmentNotificationsBinding
 import com.example.a912b.mensaje
-import com.google.firebase.Firebase
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.firestore
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -37,10 +33,7 @@ class NotificationsFragment : Fragment() {
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
 
-    val size: Int = 0
-    val db = Firebase.firestore
-
-    private lateinit var nombre : TextView
+    private lateinit var nombre : String
     private lateinit var vistarecycle : RecyclerView
     private lateinit var txtmensaje : EditText
     private lateinit var btnenviar : Button
@@ -59,7 +52,7 @@ class NotificationsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        nombre = binding.nombre
+        nombre = "Pepe"
         vistarecycle = binding.rvmensajes
         txtmensaje = binding.txtMensaje
         btnenviar = binding.btnEnviar
@@ -77,7 +70,7 @@ class NotificationsFragment : Fragment() {
         btnenviar.setOnClickListener {
             val mensaje = mensaje(
                 mensaje = txtmensaje.text.toString(),
-                nombre = nombre.text.toString(),
+                nombre = nombre,
                 hora = currentTime // Usa la hora actual
             )
             databaseReference.push().setValue(mensaje)
@@ -88,6 +81,7 @@ class NotificationsFragment : Fragment() {
                         Log.e(TAG, "Error al enviar mensaje", task.exception)
                     }
                 }
+            txtmensaje.setText("")
         }
         adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {

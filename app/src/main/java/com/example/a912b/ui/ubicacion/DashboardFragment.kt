@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -50,6 +51,15 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         mMap = googleMap
         // Habilita la ubicación del dispositivo en el mapa
         enableMyLocation()
+        // Configura el listener para capturar clics en el mapa
+        mMap.setOnMapClickListener { latLng ->
+            // Obtén las coordenadas donde se hizo clic
+            val latitude = latLng.latitude
+            val longitude = latLng.longitude
+
+            // Muestra las coordenadas en un Toast
+            Toast.makeText(requireContext(), "Lat: $latitude, Lng: $longitude", Toast.LENGTH_LONG).show()
+        }
     }
 
     // Método para habilitar la ubicación del dispositivo en el mapa
